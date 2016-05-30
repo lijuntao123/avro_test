@@ -1,0 +1,57 @@
+{   "namespace":"com.eastsoft.router.ipc.proto",
+    "doc":"This is a message define.",
+    "protocol":"RouterProtocol",
+    "name":"DataConnection",
+    "types":[
+        {
+            "type":"record",
+            "name":"MobileInfo",
+            "fields":[
+                {"name":"gid", "type":"long"},
+                {"name":"optionalIMEI","type":["string","null"]},
+                {"name":"optionalTelNumber","type":["string","null"]},
+                {"name":"optionalMobileType","type": [ "string","null"]}
+                
+            ]
+        },{
+            "type":"record",
+            "name":"IpsAndToken",
+            "fields":[
+                {"name":"portalIp","type":"string"},
+                {"name":"token","type":"string"},
+                {"name":"routerList","type": {"type": "array", "items": "string"}}  
+               
+            ]
+        }, {
+            "type":"record",
+            "name":"GatewayInfo",
+            "fields":[    
+            		{"name":"gid","type":["string","null"]},                
+                {"name":"badBridgeIp","type": ["string","null"]}                
+            ]
+        },{
+            "type":"error",
+            "name":"ServiceException",
+            "fields":[    
+            		{"name":"errorCode","type":"int"},
+            		{"name":"description","type": ["string","null"]}           
+            ]
+        }
+        
+    ],
+    
+    "messages":{
+    		"requestMobileLogin":{    				
+    				"request":[{"name":"mobileInfo","type":"MobileInfo"}],
+    				"response":"IpsAndToken",
+    				"errors":["ServiceException"]
+    		},
+    		"requestGatewayLogin":{    				
+    				"request":[{"name":"gatewayInfo","type":"GatewayInfo"}],
+    				"response":"IpsAndToken",
+    				"errors":["ServiceException"]
+    		}
+    }
+    
+    
+}

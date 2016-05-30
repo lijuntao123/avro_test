@@ -1,0 +1,34 @@
+{
+    "namespace": "avro",
+    "protocol": "messageProtocol",
+    "doc": "This is a message.",
+    "name": "Message",
+ 
+    "types": [
+    		{"name":"test",
+    			"type":"record",
+    			"fields":[
+    					{"name":"param1","type":"string"},
+    					{"name":"param2","type":"string"}
+    			]
+    			
+    		},
+        {"name":"message", "type":"record",
+            "fields":[
+                {"name":"name", "type":"string"},
+                {"name":"type", "type":"int"},
+                {"name":"price", "type":"double"},
+                {"name":"valid", "type":"boolean"},
+                {"name":"content", "type":"bytes"},
+                {"name":"list","type":[{"type":"array","items":"test"},"null"]}
+        ]}
+    ],
+ 
+    "messages":    {
+        "sendMessage":{
+            "doc" : "test",
+            "request" :[{"name":"message","type":"message" }],
+            "response" :"message"
+        }         
+    }   
+}

@@ -1,0 +1,38 @@
+/**
+ * An protocol define in Avro IDL
+ */
+@namespace("com.eastsoft.router.ipc.proto")
+protocol RouterProtocol {
+
+	record MobileInfo{
+		long gid;//网关gid			
+		union {null,@java-class("java.lang.String")string} optionalMobileType;//手机型号
+		union {null,@java-class("java.lang.String")string} optionalIMEI;//手机串号
+		union {null,@java-class("java.lang.String")string} optionalTelNumber;//手机号
+	}
+	
+	record IpsAndToken{
+		@java-class("java.lang.String") string bridgeIp;//bridgeIp
+		@java-class("java.lang.String") string token;//令牌
+		array<@java-class("java.lang.String")string> routerList;//router列表		
+	}
+	
+	record GatewayInfo{
+		long gid;//网关gid
+		@java-class("java.lang.String") string badBridgeIp;//无响应的bridgeIp
+		//string timeStamp;//时间戳	
+	}
+	
+	error ServiceException{
+		int errorCode;//错误代码
+		union {null,@java-class("java.lang.String")string} description;//错误描述
+	}
+	/**
+		手机登陆请求
+	*/
+	IpsAndToken requestMobileLogin(MobileInfo mobileInfo) throws ServiceException;
+	/**
+		网关登陆请求
+	*/
+	IpsAndToken requestGatewayLogin(GatewayInfo gatewayInfo) throws ServiceException;
+}

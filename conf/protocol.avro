@@ -1,0 +1,69 @@
+{   "namespace":"com.eastsoft.river.router.protocol",
+    "doc":"This is a message define.",
+    "protocol":"protocol",
+    "name":"DataConnection",
+    "types":[
+        {
+            "type":"record",
+            "name":"phoneRequest",
+            "fields":[
+                {"name":"gid", "type":"string"},
+                {"name":"imei","type":"string"},
+                {"name":"tel","type":["string","null"]},
+                {"name":"params","type": [{"type": "map", "values": "string"}, "null"]}
+                
+            ]
+        },{
+            "type":"record",
+            "name":"phoneResponse",
+            "fields":[
+                {"name":"portalIp","type":"string"},
+                {"name":"token","type":"string"},
+                {"name":"routerList","type": {"type": "array", "items": "string"}},                
+                {"name":"errorCode","type":"int"},
+                {"name":"params","type": [{"type": "map", "values": "string"}, "null"]}
+            ]
+        }, {
+            "type":"record",
+            "name":"gatewayRequest",
+            "fields":[    
+            		{"name":"gid","type":["string","null"]},                
+                {"name":"params","type": [{"type": "map", "values": "string"}, "null"]}                
+            ]
+        },{
+            "type":"record",
+            "name":"gatewayResponse",
+            "fields":[                
+                {"name":"portalIp","type":"string"},
+                {"name":"token","type":"string"},
+                {"name":"routerList","type": {"type": "array", "items": "string"}},                
+                {"name":"errorCode","type":"int"},
+                {"name":"params","type": [{"type": "map", "values": "string"}, "null"]}
+            ]
+        },{
+            "type":"error",
+            "name":"mError",
+            "fields":[    
+            		{"name":"errorCode","type":"int"}          
+            ]
+        }
+        
+    ],
+    
+    "messages":{
+    		"phoneMsg":{
+    				"doc":"phoneMessage",
+    				"request":[{"name":"phoneRequest","type":"phoneRequest"}],
+    				"response":"phoneResponse",
+    				"errors":["mError"]
+    		},
+    		"gatewayMsg":{
+    				"doc":"gatewayMessage",
+    				"request":[{"name":"gatewayRequest","type":"gatewayRequest"}],
+    				"response":"gatewayResponse",
+    				"errors":["mError"]
+    		}
+    }
+    
+    
+}

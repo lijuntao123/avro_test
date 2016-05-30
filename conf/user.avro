@@ -1,0 +1,18 @@
+{"namespace": "example.avro",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "favorite_number",  "type": ["string", "null"]},
+     {"name": "favorite_color", "type": ["string", "null"]},
+     {"name": "age", "type": ["string", "null"]},
+     {"name": "class1", "type": ["string", "null"]},
+     {"name": "number", "type": ["string", "null"]},
+     {"name": "address", "type": ["string", "null"]},
+     {"name": "phone", "type": ["string", "null"]},
+     {"name": "first_name", "type": ["string", "null"]},
+     {"name": "last_name", "type": ["string", "null"]}
+     
+     
+ ]
+}
